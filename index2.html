@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ольга Кемпи — профессиональный видеомонтаж</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --bg-soft: #0f1720;
+      --accent: #ff8b3d;
+      --accent-2: #3dd6c6;
+      --text: #eef3f7;
+      --muted: #9fb0c0;
+      --card: #141b24;
+      --line: rgba(255, 255, 255, 0.08);
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Manrope", "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 500px at 10% 10%, rgba(61, 214, 198, 0.18), transparent 60%),
+        radial-gradient(800px 500px at 90% 0%, rgba(255, 139, 61, 0.2), transparent 60%),
+        linear-gradient(160deg, #0b0f14 0%, #0a0d12 60%, #07090d 100%);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page { position: relative; overflow: hidden; }
+
+    .grid-lines {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 90px 90px, 90px 90px;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .container {
+      width: min(1200px, 92vw);
+      margin: 0 auto;
+      padding: 48px 0 80px;
+      position: relative;
+      z-index: 2;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 48px;
+      gap: 18px;
+    }
+
+    .logo {
+      font-family: "Bebas Neue", "Oswald", sans-serif;
+      font-size: 28px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      background: linear-gradient(120deg, var(--accent), #ffb56b);
+      color: #17120c;
+      font-weight: 800;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .cta:hover {
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 18px 50px rgba(255, 139, 61, 0.4);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(36px, 5vw, 62px);
+      line-height: 1.05;
+      font-weight: 800;
+    }
+
+    .hero h1 span { color: var(--accent-2); }
+
+    .hero p {
+      margin: 0;
+      font-size: 18px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-top: 4px;
+    }
+
+    .work-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.04);
+      transition: transform 0.2s ease, border 0.2s ease;
+      font-weight: 700;
+      color: rgba(239, 246, 255, 0.95);
+      white-space: nowrap;
+    }
+
+    .work-link:hover {
+      transform: translateY(-2px);
+      border-color: rgba(61, 214, 198, 0.8);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .pill {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+      font-size: 14px;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-media {
+      position: relative;
+      display: grid;
+      justify-items: end;
+    }
+
+    .hero-photo {
+      width: min(380px, 80vw);
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      border-radius: 32px;
+      box-shadow: var(--shadow);
+      border: 2px solid rgba(255, 255, 255, 0.08);
+      transform: translateX(12%);
+      animation: floatIn 1s ease both;
+    }
+
+    .name-tag {
+      position: absolute;
+      left: -40px;
+      bottom: 30px;
+      padding: 18px 24px;
+      border-radius: 20px;
+      background: linear-gradient(130deg, rgba(61, 214, 198, 0.9), rgba(255, 139, 61, 0.85));
+      color: #071016;
+      box-shadow: var(--shadow);
+      font-weight: 800;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      animation: riseIn 1s ease both 0.2s;
+    }
+
+    .name-tag small {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 800;
+    }
+
+    section { margin-top: 80px; }
+
+    .section-title {
+      font-size: 28px;
+      margin: 0 0 24px;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      padding: 22px;
+      border-radius: 22px;
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+      min-height: 170px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .card h3 { margin: 0; font-size: 18px; font-weight: 800; }
+
+    .card p { margin: 0; color: var(--muted); line-height: 1.5; }
+
+    /* New: About / Experience */
+    .about-card {
+      padding: 18px 20px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.32);
+      margin-top: 6px;
+    }
+
+    .about-card h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .about-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .about-card p + p { margin-top: 10px; }
+
+    .about-card strong { color: rgba(239, 246, 255, 0.95); }
+
+    /* New: Packages */
+    .price-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .price {
+      position: relative;
+      padding: 24px;
+      border-radius: 24px;
+      background: linear-gradient(140deg, rgba(255, 139, 61, 0.15), rgba(61, 214, 198, 0.1));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .price h3 { margin: 0; font-size: 18px; font-weight: 800; }
+
+    .price p { margin: 0; color: var(--muted); line-height: 1.55; }
+
+    .price span {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--accent);
+    }
+
+    .price-note { margin-top: 4px; }
+
+    .price-meta {
+      margin-top: 10px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: grid;
+      gap: 8px;
+      color: rgba(239, 246, 255, 0.78);
+      font-size: 14px;
+    }
+
+    .price-featured {
+      border-color: rgba(61, 214, 198, 0.35);
+      box-shadow: 0 22px 70px rgba(61, 214, 198, 0.12), 0 20px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    .badge {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: rgba(61, 214, 198, 0.18);
+      border: 1px solid rgba(61, 214, 198, 0.35);
+      color: rgba(239, 246, 255, 0.92);
+    }
+
+    /* New: Process */
+    .process {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+    }
+
+    .step {
+      padding: 22px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.32);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .step-top {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .step-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      color: rgba(239, 246, 255, 0.95);
+      background: rgba(61, 214, 198, 0.16);
+      border: 1px solid rgba(61, 214, 198, 0.28);
+    }
+
+    .step h3 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 900;
+    }
+
+    .step p, .step li {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .step ul {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .rules {
+      margin-top: 18px;
+      padding: 18px 20px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .rules h3 { margin: 0 0 8px; font-size: 16px; font-weight: 900; }
+
+    .rules p { margin: 0; color: var(--muted); line-height: 1.6; }
+
+    /* Contacts */
+    .contacts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .contact-item {
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .contact-item a {
+      color: var(--accent-2);
+      font-weight: 800;
+      word-break: break-word;
+    }
+
+    footer {
+      margin-top: 70px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid rgba(61, 214, 198, 0.7);
+      outline-offset: 3px;
+      border-radius: 999px;
+    }
+
+    @keyframes floatIn {
+      from { opacity: 0; transform: translate(30%, 20px) scale(0.98); }
+      to { opacity: 1; transform: translateX(12%) scale(1); }
+    }
+
+    @keyframes riseIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      header { flex-direction: column; gap: 20px; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-media { justify-items: center; }
+      .hero-photo { transform: none; }
+      .name-tag { left: 10px; }
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 32px 0 60px; }
+      .hero h1 { font-size: 34px; }
+      .name-tag { position: static; margin-top: 14px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="grid-lines"></div>
+
+    <div class="container">
+      <header>
+        <div class="logo">Video Montage</div>
+        <a class="cta" href="https://t.me/Kempi4ka">Обсудить проект</a>
+      </header>
+
+      <main class="hero">
+        <div class="hero-copy">
+          <h1>Профессиональный монтаж видео <span>для соцсетей</span> и брендов</h1>
+
+          <p>
+            Монтаж от 1 минуты до 1 часа. Работаю в Premiere Pro и After Effects:
+            простая нарезка, многокамерная съемка, моушен-графика, переходы и титры.
+          </p>
+
+          <div class="about-card">
+            <h3>Опыт и направления</h3>
+            <p>
+              Более <strong>3 лет в монтаже</strong>. Монтировала для <strong>экспертов</strong>,
+              <strong>агентств недвижимости</strong>, <strong>творческих специалистов</strong> и
+              <strong>специалистов помогающих профессий</strong>.
+            </p>
+            <p>
+              Форматы: <strong>мероприятия</strong>, <strong>тизеры</strong>, <strong>отчётные ролики</strong>,
+               <strong>Reels</strong>.
+            </p>
+          </div>
+
+          <div class="pill-row">
+            <div class="pill">Reels / Shorts / TikTok</div>
+            <div class="pill">YouTube и горизонтальные ролики</div>
+            <div class="pill">Моушен графика и анимация</div>
+          </div>
+
+          <div class="hero-actions">
+            <a class="cta" href="https://t.me/Kempi4ka">Написать в Telegram</a>
+            <a class="work-link" href="https://disk.yandex.ru/d/tBiqBUrUFFJd7g">Смотреть портфолио</a>
+          </div>
+        </div>
+
+        <div class="hero-media">
+          <img class="hero-photo" src="ава канала футаж в монтаж.jpg" alt="Ольга Кемпи" loading="lazy" />
+          <div class="name-tag">
+            <small>Видеомонтажер</small>
+            Ольга Кемпи
+          </div>
+        </div>
+      </main>
+
+      <section>
+        <h2 class="section-title">Услуги</h2>
+        <div class="service-grid">
+          <div class="card">
+            <h3>Монтаж для соцсетей</h3>
+            <p>Динамичный темп, удержание внимания, акценты на ключевых моментах.</p>
+          </div>
+          <div class="card">
+            <h3>Многокамерный монтаж</h3>
+            <p>Синхронизация камер, корректные склейки и чистый звук.</p>
+          </div>
+          <div class="card">
+            <h3>Моушен-графика</h3>
+            <p>Титры, анимированные элементы, графические переходы.</p>
+          </div>
+          <div class="card">
+            <h3>Полный цикл</h3>
+            <p>От черновой нарезки до финального экспорта под площадку.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">Пакеты и цены</h2>
+
+        <div class="price-grid">
+          <div class="price">
+            <h3>Старт</h3>
+            <p class="price-note">
+              Простая нарезка + субтитры. Можно с вашими материалами: картинки, дополнительные видео.
+            </p>
+            <p><span>1000 ₽</span> за ролик</p>
+            <div class="price-meta">
+              <div><strong>Срок:</strong> от 2 дней</div>
+              <div><strong>Правки:</strong> 2 итерации бесплатно</div>
+            </div>
+          </div>
+
+          <div class="price price-featured">
+            <div class="badge">Популярно</div>
+            <h3>Стандарт</h3>
+            <p class="price-note">
+              Субтитры + графика + поиск картинок, подбор музыки и звуков.
+            </p>
+            <p><span>1300 ₽</span> за ролик</p>
+            <div class="price-meta">
+              <div><strong>Срок:</strong> от 3 дней</div>
+              <div><strong>Правки:</strong> 2 итерации бесплатно</div>
+            </div>
+          </div>
+
+          <div class="price">
+            <h3>Премиум</h3>
+            <p class="price-note">
+              Моушн-дизайн, работа со шрифтами и типографикой, сцены в After Effects,
+              возможно — переработка сценария.
+            </p>
+            <p><span>от 2000 ₽</span> за ролик</p>
+            <div class="price-meta">
+              <div><strong>Срок:</strong> от 7 дней</div>
+              <div><strong>Правки:</strong> 2 итерации бесплатно</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rules">
+          <h3>Правки</h3>
+          <p>
+            <strong>2 итерации правок — бесплатно.</strong> Далее правки оплачиваются:
+            <strong>50% от стоимости выбранного пакета</strong>.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">Как мы работаем</h2>
+
+        <div class="process">
+          <div class="step">
+            <div class="step-top">
+              <div class="step-num">1</div>
+              <h3>Заявка в Telegram</h3>
+            </div>
+            <p>
+              Пишите заявку с вашим запросом в Telegram. Максимально опишите задачу и необходимый результат.
+              Желательно приложить референсы и стилистические подробности:
+              брендовые цвета, шрифты (или пожелания по ним), а также обозначить сроки.
+            </p>
+          </div>
+
+          <div class="step">
+            <div class="step-top">
+              <div class="step-num">2</div>
+              <h3>Передача материалов</h3>
+            </div>
+            <p>
+              После согласования отправляете файлы через Яндекс Диск или удобный вам сервис,
+              чтобы избежать сжатия.
+            </p>
+          </div>
+
+          <div class="step">
+            <div class="step-top">
+              <div class="step-num">3</div>
+              <h3>Черновик или сразу финал</h3>
+            </div>
+            <p>
+              Если необходимо, могу прислать черновые варианты, либо отправлю сразу готовый ролик.
+              После этого можно внести <strong>1 пул правок</strong>.
+            </p>
+          </div>
+
+          <div class="step">
+            <div class="step-top">
+              <div class="step-num">4</div>
+              <h3>Правки по правилам</h3>
+            </div>
+            <ul>
+              <li>
+                Просьба все правки направлять <strong>текстом</strong> с <strong>нумерацией</strong> и
+                указанием <strong>временной отметки</strong>.
+              </li>
+              <li>
+                <strong>Второй пул правок — бесплатно</strong>, если это незначительные изменения/ошибки
+                (цвет шрифта, правка текста, замена 1–2 картинок на аналогичные с сохранением общей динамики и анимации и т.п.).
+              </li>
+              <li>
+                Более серьёзные изменения, требующие перемонтажа части видео — <strong>50% от стоимости рилса</strong>.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">Контакты</h2>
+        <div class="contacts">
+          <div class="contact-item">
+            <strong>ТГ канал</strong>
+            <a href="https://t.me/futagevmontazh">t.me/futagevmontazh</a>
+          </div>
+          <div class="contact-item">
+            <strong>Instagram</strong>
+            <a href="https://instagram.com/olga_kempi">@olga_kempi</a>
+          </div>
+          <div class="contact-item">
+            <strong>Telegram</strong>
+            <a href="https://t.me/Kempi4ka">@Kempi4ka</a>
+          </div>
+        </div>
+      </section>
+
+      <footer>Готова обсудить проект и предложить оптимальное решение под ваш формат.</footer>
+    </div>
+  </div>
+</body>
+</html>
