@@ -185,6 +185,20 @@
       gap: 16px;
     }
 
+    .hero-media::before {
+      content: "";
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      width: min(380px, 80vw);
+      aspect-ratio: 3 / 4;
+      transform: translateX(-50%);
+      border-radius: 36px;
+      background: linear-gradient(130deg, rgba(247, 253, 67, 0.55), rgba(238, 105, 225, 0.5));
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+      z-index: 0;
+    }
+
     .hero-photo {
       width: min(380px, 80vw);
       aspect-ratio: 3 / 4;
@@ -194,10 +208,13 @@
       border: 2px solid rgba(0, 0, 0, 0.08);
       transform: translateX(12%);
       animation: floatIn 1s ease both;
+      position: relative;
+      z-index: 1;
     }
 
     .name-tag {
       position: static;
+      width: min(380px, 80vw);
       padding: 18px 24px;
       border-radius: 20px;
       background: linear-gradient(130deg, rgba(247, 253, 67, 0.9), rgba(238, 105, 225, 0.75));
@@ -208,6 +225,9 @@
       flex-direction: column;
       gap: 6px;
       animation: riseIn 1s ease both 0.2s;
+      text-align: center;
+      position: relative;
+      z-index: 1;
     }
 
     .name-tag small {
@@ -225,6 +245,32 @@
       font-weight: 800;
       letter-spacing: 0.01em;
       color: var(--accent);
+    }
+
+    .dark-band {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      background: #1d1f24;
+      padding: 70px 0;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+
+    .dark-band-inner {
+      width: min(1200px, 92vw);
+      margin: 0 auto;
+      display: grid;
+      gap: 60px;
+    }
+
+    .dark-band section { margin-top: 0; }
+
+    .dark-band .section-title { color: var(--accent-2); }
+
+    .dark-band .card,
+    .dark-band .price,
+    .dark-band .review-card {
+      background: #ffffff;
     }
 
     .service-grid {
@@ -278,8 +324,111 @@
 
     .about-card strong { color: var(--accent); }
 
+    .about-plain {
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+      display: grid;
+      gap: 16px;
+    }
+
+    .about-plain h3 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .about-plain p {
+      margin: 0;
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .review-card {
+      position: relative;
+      padding: 20px 22px 22px;
+      border-radius: 22px;
+      background: linear-gradient(160deg, #fff4bf 0%, #ffe18d 100%);
+      border: 1px solid #f2c65e;
+      box-shadow: 0 14px 30px rgba(86, 60, 8, 0.16);
+      display: grid;
+      gap: 10px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .review-card::before {
+      content: "";
+      position: absolute;
+      left: 26px;
+      bottom: -10px;
+      width: 18px;
+      height: 18px;
+      background: #ffe18d;
+      border: 1px solid #f2c65e;
+      border-top: none;
+      border-right: none;
+      transform: rotate(45deg);
+      box-shadow: -4px 4px 10px rgba(86, 60, 8, 0.08);
+    }
+
+    .review-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(200px 120px at 20% 10%, rgba(255, 255, 255, 0.5), transparent 60%);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .review-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px rgba(86, 60, 8, 0.2);
+    }
+
+    .review-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .review-stars {
+      color: #f6b500;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+    }
+
+    .review-card p {
+      margin: 0;
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .review-author {
+      font-weight: 800;
+      color: #8b5b0a;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+    }
+
+    .about-section { text-align: center; }
+
+    .about-section .about-plain {
+      width: min(980px, 94vw);
+      max-width: none;
+    }
+ 
     /* New: Packages */
-    .price-grid {
+.price-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 20px;
@@ -343,38 +492,66 @@
 
     /* New: Process */
     .process {
+      position: relative;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 20px;
+      gap: 24px;
+      padding-left: 36px;
     }
 
+    .process::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      bottom: 8px;
+      left: -30px;
+      width: 2px;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(238, 105, 225, 0.9) 0,
+        rgba(238, 105, 225, 0.9) 10px,
+        transparent 10px,
+        transparent 20px
+      );
+    }
+ 
     .step {
+      position: relative;
       padding: 22px;
       border-radius: 22px;
-      background: linear-gradient(140deg, rgba(247, 253, 67, 0.2), rgba(247, 253, 67, 0.06));
+      background: #ffffff;
       border: 1px solid rgba(0, 0, 0, 0.08);
       box-shadow: 0 18px 40px rgba(15, 23, 42, 0.1);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .step-top {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .step-num {
-      width: 36px;
-      height: 36px;
-      border-radius: 14px;
       display: grid;
-      place-items: center;
-      font-weight: 900;
-      color: #000000;
-      background: rgba(247, 253, 67, 0.8);
+      grid-template-columns: max-content 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+.step::before {
+      content: "";
+      position: absolute;
+      left: -36px;
+      top: 28px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(238, 105, 225, 0.2);
+    }
+
+    .step-image {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      object-fit: cover;
       border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.12);
+    }
+
+    .step-image.large {
+      width: 144px;
+      height: 144px;
+      border-radius: 22px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
     }
 
     .step h3 {
@@ -467,6 +644,13 @@
       white-space: nowrap;
     }
 
+    .about-section { text-align: center; }
+
+    .about-section .about-plain {
+      width: min(980px, 94vw);
+      max-width: none;
+    }
+
     @media (max-width: 900px) {
       header { flex-direction: column; gap: 20px; }
       .hero { grid-template-columns: 1fr; }
@@ -488,39 +672,16 @@
     <div class="grid-lines"></div>
 
     <div class="container">
-      <header>
-        <a class="cta" href="https://t.me/Kempi4ka">Обсудить проект</a>
-      </header>
-
       <main class="hero">
         <div class="hero-copy">
           <h1>Монтаж видео для <span class="rotating-word">соцсетей</span></h1>
 
           <p>
-            Качественное видео помогает блогерам привлекать аудиторию, экспертам — находить клиентов, а бизнесу — увеличивать продажи.
+            Помогаю создавать качественные видео для привлечения аудитории, клиентов и увеличения продаж.
           </p>
 
-          <div class="about-card">
-            <h3>Опыт и направления</h3>
-            <p>
-              Более <strong>3 лет в монтаже</strong>. Монтировала для <strong>экспертов</strong>,
-              <strong>агентств недвижимости</strong>, <strong>творческих специалистов</strong> и
-              <strong>специалистов помогающих профессий</strong>.
-            </p>
-            <p>
-              Форматы: <strong>мероприятия</strong>, <strong>тизеры</strong>, <strong>отчётные ролики</strong>,
-               <strong>Reels</strong>.
-            </p>
-          </div>
-
-          <div class="pill-row">
-            <div class="pill">Reels / Shorts / TikTok</div>
-            <div class="pill">YouTube и горизонтальные ролики</div>
-            <div class="pill">Моушен графика и анимация</div>
-          </div>
-
           <div class="hero-actions">
-            <a class="cta" href="https://t.me/Kempi4ka">Написать в Telegram</a>
+            <a class="cta" href="https://t.me/Kempi4ka">Обсудить проект в Telegram</a>
             <a class="work-link" href="https://disk.yandex.ru/d/tBiqBUrUFFJd7g">Смотреть портфолио</a>
           </div>
         </div>
@@ -534,136 +695,206 @@
         </div>
       </main>
 
-      <section>
-        <h2 class="section-title">Услуги</h2>
-        <div class="service-grid">
-          <div class="card">
-            <h3>Монтаж для соцсетей</h3>
-            <p>Динамичный темп, удержание внимания, акценты на ключевых моментах.</p>
-          </div>
-          <div class="card">
-            <h3>Многокамерный монтаж</h3>
-            <p>Синхронизация камер, корректные склейки и чистый звук.</p>
-          </div>
-          <div class="card">
-            <h3>Моушен-графика</h3>
-            <p>Титры, анимированные элементы, графические переходы.</p>
-          </div>
-          <div class="card">
-            <h3>Полный цикл</h3>
-            <p>От черновой нарезки до финального экспорта под площадку.</p>
-          </div>
+      <div class="dark-band">
+        <div class="dark-band-inner">
+          <section>
+            <h2 class="section-title">Услуги</h2>
+            <div class="service-grid">
+              <div class="card">
+                <h3>Монтаж для соцсетей</h3>
+                <p>Динамичный темп, удержание внимания, акценты на ключевых моментах.</p>
+              </div>
+              <div class="card">
+                <h3>Многокамерный монтаж</h3>
+                <p>Синхронизация камер, корректные склейки и чистый звук.</p>
+              </div>
+              <div class="card">
+                <h3>Моушен-графика</h3>
+                <p>Титры, анимированные элементы, графические переходы.</p>
+              </div>
+              <div class="card">
+                <h3>Полный цикл</h3>
+                <p>От черновой нарезки до финального экспорта под площадку.</p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h2 class="section-title">Отзывы</h2>
+            <div class="reviews-grid">
+              <div class="review-card">
+                <div class="review-header">
+                  <div class="review-author">Дарья</div>
+                  <div class="review-stars">★★★★★</div>
+                </div>
+                <p>
+                  Вау, Оль, круто! Мне очень нравится, хорошо отражает стиль и энергетику нашего мероприятия.
+                </p>
+              </div>
+              <div class="review-card">
+                <div class="review-header">
+                  <div class="review-author">Расул</div>
+                  <div class="review-stars">★★★★★</div>
+                </div>
+                <p>
+                  классно, Оль! мне нравится, что ты сделала что-то практически из ничего и смотрится стильно и закончено.
+                </p>
+              </div>
+              <div class="review-card">
+                <div class="review-header">
+                  <div class="review-author">Корпоративный клиент</div>
+                  <div class="review-stars">★★★★★</div>
+                </div>
+                <p>
+                  Классно, Оля делает всё вовремя и всегда вносит правки так, чтобы нам понравился конечный результат.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h2 class="section-title">Пакеты и цены</h2>
+
+            <div class="price-grid">
+              <div class="price">
+                <h3>Старт</h3>
+                <p class="price-note">
+                  Простая нарезка + субтитры.
+                </p>
+                <p><span>1000 ₽</span> за ролик</p>
+                <div class="price-meta">
+                  <div><strong>Срок:</strong> от 2 дней</div>
+                  <div><strong>Правки:</strong> 2 итерации бесплатно</div>
+                </div>
+              </div>
+
+              <div class="price price-featured">
+                <div class="badge">Популярно</div>
+                <h3>Стандарт</h3>
+                <p class="price-note">
+                  Субтитры + анимация заголовков и доп. элементов + поиск картинок, подбор музыки и звуков.
+                </p>
+                <p><span>1300 ₽</span> за ролик</p>
+                <div class="price-meta">
+                  <div><strong>Срок:</strong> от 3 дней</div>
+                  <div><strong>Правки:</strong> 2 итерации бесплатно</div>
+                </div>
+              </div>
+
+              <div class="price">
+                <h3>Премиум</h3>
+                <p class="price-note">
+                  Моушн-дизайн, работа со шрифтами и типографикой, сцены в After Effects,
+                  возможно — переработка сценария.
+                </p>
+                <p><span>от 3000 ₽</span> за ролик</p>
+                <div class="price-meta">
+                  <div><strong>Срок:</strong> от 7 дней</div>
+                  <div><strong>Правки:</strong> 2 итерации бесплатно</div>
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
-      </section>
+      </div>
 
       <section>
-        <h2 class="section-title">Пакеты и цены</h2>
-
-        <div class="price-grid">
-          <div class="price">
-            <h3>Старт</h3>
-            <p class="price-note">
-              Простая нарезка + субтитры.
-            </p>
-            <p><span>1000 ₽</span> за ролик</p>
-            <div class="price-meta">
-              <div><strong>Срок:</strong> от 2 дней</div>
-              <div><strong>Правки:</strong> 2 итерации бесплатно</div>
-            </div>
-          </div>
-
-          <div class="price price-featured">
-            <div class="badge">Популярно</div>
-            <h3>Стандарт</h3>
-            <p class="price-note">
-              Субтитры + анимация заголовков и доп. элементов + поиск картинок, подбор музыки и звуков.
-            </p>
-            <p><span>1300 ₽</span> за ролик</p>
-            <div class="price-meta">
-              <div><strong>Срок:</strong> от 3 дней</div>
-              <div><strong>Правки:</strong> 2 итерации бесплатно</div>
-            </div>
-          </div>
-
-          <div class="price">
-            <h3>Премиум</h3>
-            <p class="price-note">
-              Моушн-дизайн, работа со шрифтами и типографикой, сцены в After Effects,
-              возможно — переработка сценария.
-            </p>
-            <p><span>от 3000 ₽</span> за ролик</p>
-            <div class="price-meta">
-              <div><strong>Срок:</strong> от 7 дней</div>
-              <div><strong>Правки:</strong> 2 итерации бесплатно</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h2 class="section-title">Как мы работаем</h2>
+        <h2 class="section-title">Процесс работы</h2>
 
         <div class="process">
           <div class="step">
-            <div class="step-top">
-              <div class="step-num">1</div>
+            <img class="step-image" src="telegram icon.jpg" alt="Заявка в Telegram" loading="lazy" />
+            <div>
               <h3>Заявка в Telegram</h3>
+              <p>
+                Пишите заявку с вашим запросом в Telegram. Максимально опишите задачу и необходимый результат.
+                Желательно приложить референсы и стилистические подробности:
+                брендовые цвета, шрифты (или пожелания по ним), а также обозначить сроки.
+              </p>
             </div>
-            <p>
-              Пишите заявку с вашим запросом в Telegram. Максимально опишите задачу и необходимый результат.
-              Желательно приложить референсы и стилистические подробности:
-              брендовые цвета, шрифты (или пожелания по ним), а также обозначить сроки.
-            </p>
           </div>
 
           <div class="step">
-            <div class="step-top">
-              <div class="step-num">2</div>
+            <img class="step-image large" src="загрузка файлов.jpg" alt="Передача материалов" loading="lazy" />
+            <div>
               <h3>Передача материалов</h3>
+              <p>
+                После согласования отправляете файлы через Яндекс Диск или удобный вам сервис,
+                чтобы избежать сжатия.
+              </p>
             </div>
-            <p>
-              После согласования отправляете файлы через Яндекс Диск или удобный вам сервис,
-              чтобы избежать сжатия.
-            </p>
           </div>
 
           <div class="step">
-            <div class="step-top">
-              <div class="step-num">3</div>
+            <img class="step-image large" src="монтаж пк.jpg" alt="Черновик или сразу финал" loading="lazy" />
+            <div>
               <h3>Черновик или сразу финал</h3>
+              <p>
+                Если необходимо, могу прислать черновые варианты, либо отправлю сразу готовый ролик.
+                После этого можно внести <strong>1 пул правок</strong>.
+              </p>
             </div>
-            <p>
-              Если необходимо, могу прислать черновые варианты, либо отправлю сразу готовый ролик.
-              После этого можно внести <strong>1 пул правок</strong>.
-            </p>
           </div>
 
           <div class="step">
-            <div class="step-top">
-              <div class="step-num">4</div>
+            <img class="step-image large" src="просмотр видео.jpg" alt="Правки по правилам" loading="lazy" />
+            <div>
               <h3>Правки по правилам</h3>
+              <ul>
+                <li>
+                  Просьба все правки направлять <strong>текстом</strong> с <strong>нумерацией</strong> и
+                  указанием <strong>временной отметки</strong>.
+                </li>
+                <li>
+                  <strong>Второй пул правок — бесплатно</strong>, если это незначительные изменения/ошибки
+                  (цвет шрифта, правка текста, замена 1–2 картинок на аналогичные с сохранением общей динамики и анимации и т.п.).
+                </li>
+                <li>
+                  Более серьёзные изменения, требующие перемонтажа части видео — <strong>50% от стоимости рилса</strong>.
+                </li>
+              </ul>
             </div>
-            <ul>
-              <li>
-                Просьба все правки направлять <strong>текстом</strong> с <strong>нумерацией</strong> и
-                указанием <strong>временной отметки</strong>.
-              </li>
-              <li>
-                <strong>Второй пул правок — бесплатно</strong>, если это незначительные изменения/ошибки
-                (цвет шрифта, правка текста, замена 1–2 картинок на аналогичные с сохранением общей динамики и анимации и т.п.).
-              </li>
-              <li>
-                Более серьёзные изменения, требующие перемонтажа части видео — <strong>50% от стоимости рилса</strong>.
-              </li>
-            </ul>
           </div>
         </div>
       </section>
 
+      <section class="about-section">
+        <h2 class="section-title">Обо мне</h2>
+        <div class="about-plain">
+          <h3>Для меня монтаж — это больше чем работа</h3>
+          <p>
+            Мой путь начался еще в школе — я монтировала видео просто для души, для себя и друзей. Всегда было интересно,
+            как из кусочков собрать целую историю.
+          </p>
+          <p>
+            С 2010 года я вгрызалась в Sony Vegas (тогда это было не так просто!), экспериментировала, создавала «клоны»
+            и визуальные эффекты, когда это еще не было мейнстримом. В 2013-м, почти по крупицам, я учила After Effects
+            по редким англоязычным туториалам на YouTube — это была настоящая школа поиска решений.
+          </p>
+          <p>
+            С 2019 года я серьезно углубилась в профессиональный стек: Premiere Pro и тот же After Effects, но уже
+            на продвинутом уровне, проходя курсы у признанных практиков — Дмитрия Ларионова и Никиты Чеснокова (Profile School).
+          </p>
+          <p>
+            А с 2020 года я применяю все эти навыки на практике, создавая ролики для экспертов. И все это — в графике,
+            где есть место двоим детям, что научило меня особой организованности и умению уложиться в сроки любой ценой.
+          </p>
+          <p>
+            Кроме того, я проходила курсы менеджера YouTube-каналов, поэтому отлично понимаю, какой именно монтаж нужен
+            для успеха на этой платформе — от удержания внимания до SEO-заголовков.
+          </p>
+          <p>
+            Мой подход — это смесь опыта, постоянного обучения и понимания, что за каждым видео стоит живой человек
+            с своей задачей. Я не люблю стандартные решения, к каждому видео подхожу как к уникальной истории, где важна
+            каждая деталь.
+          </p>
+        </div>
+      </section>
+ 
       <section>
         <h2 class="section-title">Контакты</h2>
         <div class="contacts">
-          <div class="contact-item">
+<div class="contact-item">
             <strong>ТГ канал</strong>
             <a href="https://t.me/futagevmontazh">t.me/futagevmontazh</a>
           </div>
