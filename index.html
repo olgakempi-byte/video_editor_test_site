@@ -267,10 +267,32 @@
 
     .dark-band .section-title { color: var(--accent-2); }
 
-    .dark-band .card,
     .dark-band .price,
     .dark-band .review-card {
       background: #ffffff;
+    }
+
+    .dark-band .card {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      color: #ffffff;
+      min-height: auto;
+      padding: 8px 0;
+    }
+
+    .dark-band .card h3 {
+      color: var(--accent);
+    }
+
+    .dark-band .card p {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .dark-band .card-meta,
+    .dark-band .card-tags {
+      color: var(--accent-2);
+      font-style: italic;
     }
 
     .service-grid {
@@ -292,14 +314,21 @@
       animation: fadeUp 0.8s ease both;
     }
 
-    .card h3 { margin: 0; font-size: 18px; font-weight: 800; color: var(--accent); }
-
-    .card p { margin: 0; color: var(--text); line-height: 1.5; }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
     .card-icon {
-      font-size: 28px;
+      font-size: 30px;
       letter-spacing: 0.08em;
+      line-height: 1;
     }
+
+    .card h3 { margin: 0; font-size: 22px; font-weight: 800; color: var(--accent); }
+
+    .card p { margin: 0; color: var(--text); line-height: 1.5; }
 
     .card-tags {
       font-size: 13px;
@@ -368,6 +397,29 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 18px;
+    }
+
+    /* Portfolio */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .portfolio-card {
+      padding: 12px;
+      border-radius: 20px;
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+    }
+
+    .portfolio-frame {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      border: 0;
+      border-radius: 16px;
+      background: #000000;
     }
 
     .review-card {
@@ -716,26 +768,74 @@
 
       <div class="dark-band">
         <div class="dark-band-inner">
+          <section id="portfolio">
+            <h2 class="section-title">Портфолио</h2>
+            <div class="portfolio-grid">
+              <div class="portfolio-card">
+                <iframe
+                  class="portfolio-frame"
+                  src="https://www.youtube.com/embed/T_0_FRhrzhs"
+                  title="YouTube Shorts T_0_FRhrzhs"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen></iframe>
+              </div>
+              <div class="portfolio-card">
+                <iframe
+                  class="portfolio-frame"
+                  src="https://www.youtube.com/embed/O3iq5kYQt-0"
+                  title="YouTube Shorts O3iq5kYQt-0"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen></iframe>
+              </div>
+              <div class="portfolio-card">
+                <iframe
+                  class="portfolio-frame"
+                  src="https://www.youtube.com/embed/el1vMpAt72s"
+                  title="YouTube Shorts el1vMpAt72s"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen></iframe>
+              </div>
+              <div class="portfolio-card">
+                <iframe
+                  class="portfolio-frame"
+                  src="https://www.youtube.com/embed/DtfdCl2LKXE"
+                  title="YouTube Shorts DtfdCl2LKXE"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen></iframe>
+              </div>
+            </div>
+          </section>
+
           <section>
             <h2 class="section-title">Форматы видео</h2>
             <div class="service-grid">
               <div class="card">
-                <div class="card-icon">📱</div>
-                <h3>Short-form видео</h3>
+                <div class="card-header">
+                  <div class="card-icon">📱</div>
+                  <h3>Short-form видео</h3>
+                </div>
                 <p>Reels · TikTok · Shorts</p>
                 <p>Динамичный монтаж, который удерживает внимание с первых секунд и досматривается до конца. Акценты, ритм, субтитры.</p>
                 <div class="card-meta">Вертикальные форматы · быстрый темп · hooks</div>
               </div>
               <div class="card">
-                <div class="card-icon">🖥️</div>
-                <h3>Long-form видео</h3>
+                <div class="card-header">
+                  <div class="card-icon">🖥️</div>
+                  <h3>Long-form видео</h3>
+                </div>
                 <p>YouTube · интервью · подкасты</p>
                 <p>Чистый и спокойный монтаж длинных видео. Логичная структура, комфортный темп и аккуратные склейки без перегруза.</p>
                 <div class="card-meta">Горизонтальный формат · логика · удержание внимания</div>
               </div>
               <div class="card">
-                <div class="card-icon">✨</div>
-                <h3>Motion &amp; Graphics</h3>
+                <div class="card-header">
+                  <div class="card-icon">✨</div>
+                  <h3>Motion &amp; Graphics</h3>
+                </div>
                 <p>Анимация · титры · инфографика</p>
                 <p>Анимированные элементы, титры и графика, которые усиливают смысл видео и помогают донести идею.</p>
                 <div class="card-meta">Анимация · визуальные акценты · стиль</div>
@@ -917,6 +1017,10 @@
  
       <section>
         <h2 class="section-title">Контакты</h2>
+        <p>
+          Приглашаю вас подписаться на мой телеграм канал, чтобы не потеряться:
+          <a href="https://t.me/+4e30sdTLlkIwNDQy">Футаж в монтаж</a>
+        </p>
         <div class="contacts">
 <div class="contact-item">
             <strong>ТГ канал</strong>
